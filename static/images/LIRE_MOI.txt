@@ -1,0 +1,6 @@
+# Images statiques — Khadja Rassoul Shop
+
+Placez ici le fichier :  logo.png
+
+Ce logo apparaît dans la navbar et l'onglet du navigateur.
+Format recommandé : PNG transparent, hauteur 80–100px.

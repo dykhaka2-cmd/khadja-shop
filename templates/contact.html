@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Contact — Khadja Rassoul Shop{% endblock %}
+
+{% block content %}
+
+<div class="catalogue-header">
+    <div class="container">
+        <h1>Nous <span class="gold">Contacter</span></h1>
+        <p>Un seul numéro, pour tous vos besoins ❤️</p>
+    </div>
+</div>
+
+<section class="section" style="background:var(--fond);">
+    <div class="container">
+        <div class="contact-layout">
+
+            <!-- INFOS -->
+            <div class="contact-infos">
+                <h2>Khadja Rassoul <span class="gold">Shop</span></h2>
+                <p>La qualité, le style et l'élégance au service de chaque femme.</p>
+
+                <div class="info-cards">
+                    <div class="info-card">
+                        <div class="info-icon">📞</div>
+                        <div>
+                            <h4>Téléphone</h4>
+                            <a href="tel:772180201">772 180 201</a>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">📍</div>
+                        <div>
+                            <h4>Adresse</h4>
+                            <p>Dakar & Mbacké</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">🚚</div>
+                        <div>
+                            <h4>Livraison</h4>
+                            <p>Disponible sur commande</p>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">🕐</div>
+                        <div>
+                            <h4>Horaires</h4>
+                            <p>Lun–Sam : 8h–20h</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="categories-list">
+                    <h4>Nos produits</h4>
+                    <div class="cats-chips">
+                        <span>🧵 Tissu</span>
+                        <span>👗 Vêtement</span>
+                        <span>🌸 Parfum</span>
+                        <span>🛏️ Linge de Lit</span>
+                        <span>👜 Accessoires</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FORMULAIRE -->
+            <div class="contact-form-wrap">
+                <h3>Envoyer un message</h3>
+                <form method="post" class="contact-form">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="nom">Votre nom *</label>
+                        <input type="text" id="nom" name="nom" placeholder="Ex: Aminata Diallo" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telephone">Votre téléphone *</label>
+                        <input type="tel" id="telephone" name="telephone" placeholder="Ex: 77 000 00 00" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Votre message *</label>
+                        <textarea id="message" name="message" rows="5"
+                            placeholder="Décrivez le produit souhaité, votre localisation..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">
+                        Envoyer le message ❤️
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}

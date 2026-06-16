@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Khadja Rassoul Shop{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="{% url 'home' %}" class="nav-logo">
+            <img src="{% static 'images/logo.png' %}" alt="Logo" onerror="this.style.display='none'">
+            <span class="logo-text">Khadja Rassoul <span class="logo-gold">Shop</span></span>
+        </a>
+        <button class="nav-toggle" onclick="toggleMenu()">☰</button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="{% url 'home' %}">Accueil</a></li>
+            <li><a href="{% url 'catalogue' %}">Catalogue</a></li>
+            <li><a href="{% url 'contact' %}">Commander</a></li>
+        </ul>
+        <a href="tel:772180201" class="nav-phone">📞 772 180 201</a>
+    </div>
+</nav>
+
+{% if messages %}
+<div class="messages-container">
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<main>{% block content %}{% endblock %}</main>
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-brand">
+            <h3>👑 Khadja Rassoul Shop</h3>
+            <p>La qualité, le style et l'élégance au service de chaque femme.</p>
+            <p class="footer-slogan">« Tous ce qu'une femme besoin » ❤️</p>
+        </div>
+        <div class="footer-links">
+            <h4>Catégories</h4>
+            <ul>
+                <li><a href="{% url 'catalogue' %}?categorie=tissu">🧵 Tissu</a></li>
+                <li><a href="{% url 'catalogue' %}?categorie=vetement">👗 Vêtement</a></li>
+                <li><a href="{% url 'catalogue' %}?categorie=parfum">🌸 Parfum</a></li>
+                <li><a href="{% url 'catalogue' %}?categorie=linge-de-lit">🛏️ Linge de Lit</a></li>
+                <li><a href="{% url 'catalogue' %}?categorie=accessoires">👜 Accessoires</a></li>
+            </ul>
+        </div>
+        <div class="footer-contact">
+            <h4>Nous trouver</h4>
+            <p>📍 Dakar & Mbacké</p>
+            <p>📞 <a href="tel:772180201">772 180 201</a></p>
+            <div class="footer-badges">
+                <span>✅ Qualité garantie</span>
+                <span>💰 Prix abordables</span>
+                <span>😊 Satisfaction assurée</span>
+                <span>🚚 Livraison disponible</span>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>Khadja Rassoul Shop — votre satisfaction notre priorité ! ❤️</p>
+    </div>
+</footer>
+
+<script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

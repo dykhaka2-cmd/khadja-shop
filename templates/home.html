@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Khadja Rassoul Shop — Accueil{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-content">
+        <p class="hero-tagline">✨ La qualité, le style et l'élégance</p>
+        <h1 class="hero-title">Khadja Rassoul <span class="gold">Shop</span></h1>
+        <p class="hero-subtitle">Tous ce qu'une femme besoin ❤️</p>
+        <div class="hero-buttons">
+            <a href="{% url 'catalogue' %}" class="btn-primary">Voir le catalogue</a>
+            <a href="tel:772180201" class="btn-secondary">📞 Commander maintenant</a>
+        </div>
+        <div class="hero-info">
+            <span>📍 Dakar & Mbacké</span>
+            <span>🚚 Livraison disponible</span>
+            <span>✅ Qualité garantie</span>
+        </div>
+    </div>
+</section>
+
+<!-- CATÉGORIES -->
+<section class="section categories-section">
+    <div class="container">
+        <h2 class="section-title">Nos <span class="gold">Catégories</span></h2>
+        <div class="categories-grid">
+            {% for cat in categories %}
+            <a href="{% url 'catalogue' %}?categorie={{ cat.slug }}" class="category-card">
+                {% if cat.image %}
+                <img src="{{ cat.image.url }}" alt="{{ cat.nom }}">
+                {% else %}
+                <div class="cat-emoji">{{ cat.icone|default:"🛍️" }}</div>
+                {% endif %}
+                <h3>{{ cat.nom }}</h3>
+            </a>
+            {% empty %}
+            <a href="{% url 'catalogue' %}?categorie=tissu" class="category-card">
+                <div class="cat-emoji">🧵</div><h3>Tissu</h3>
+            </a>
+            <a href="{% url 'catalogue' %}?categorie=vetement" class="category-card">
+                <div class="cat-emoji">👗</div><h3>Vêtement</h3>
+            </a>
+            <a href="{% url 'catalogue' %}?categorie=parfum" class="category-card">
+                <div class="cat-emoji">🌸</div><h3>Parfum</h3>
+            </a>
+            <a href="{% url 'catalogue' %}?categorie=linge-de-lit" class="category-card">
+                <div class="cat-emoji">🛏️</div><h3>Linge de Lit</h3>
+            </a>
+            <a href="{% url 'catalogue' %}?categorie=accessoires" class="category-card">
+                <div class="cat-emoji">👜</div><h3>Accessoires</h3>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- PRODUITS EN VEDETTE -->
+{% if produits_vedette %}
+<section class="section products-section">
+    <div class="container">
+        <h2 class="section-title">Produits <span class="gold">Vedettes</span></h2>
+        <div class="products-grid">
+            {% for produit in produits_vedette %}
+            <a href="{% url 'produit_detail' produit.slug %}" class="product-card">
+                {% if produit.image %}
+                <img src="{{ produit.image.url }}" alt="{{ produit.nom }}">
+                {% else %}
+                <div class="product-no-img">🛍️</div>
+                {% endif %}
+                <div class="product-info">
+                    <span class="product-cat">{{ produit.categorie.nom }}</span>
+                    <h3>{{ produit.nom }}</h3>
+                    <p class="product-price">{{ produit.prix|floatformat:0 }} FCFA</p>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+        <div class="section-cta">
+            <a href="{% url 'catalogue' %}" class="btn-primary">Voir tous les produits →</a>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- GARANTIES -->
+<section class="section garanties-section">
+    <div class="container">
+        <h2 class="section-title" style="color:#fff;">Pourquoi nous <span class="gold">choisir ?</span></h2>
+        <div class="garanties-grid">
+            <div class="garantie-card">
+                <div class="garantie-icon">✅</div>
+                <h3>Qualité garantie</h3>
+                <p>Des produits soigneusement sélectionnés pour vous</p>
+            </div>
+            <div class="garantie-card">
+                <div class="garantie-icon">💰</div>
+                <h3>Prix abordables</h3>
+                <p>Le meilleur rapport qualité/prix du marché</p>
+            </div>
+            <div class="garantie-card">
+                <div class="garantie-icon">😊</div>
+                <h3>Satisfaction assurée</h3>
+                <p>Votre bonheur est notre priorité absolue</p>
+            </div>
+            <div class="garantie-card">
+                <div class="garantie-icon">🚚</div>
+                <h3>Livraison disponible</h3>
+                <p>Dakar et Mbacké, un seul appel suffit</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- APPEL À L'ACTION -->
+<section class="cta-section">
+    <div class="container" style="text-align:center;">
+        <h2>Un seul numéro, pour tous vos besoins ! ❤️</h2>
+        <a href="tel:772180201" class="btn-cta">📞 772 180 201</a>
+        <p>Dakar & Mbacké — Livraison disponible</p>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Catalogue — Khadja Rassoul Shop{% endblock %}
+
+{% block content %}
+
+<div class="catalogue-header">
+    <div class="container">
+        <h1>Notre <span class="gold">Catalogue</span></h1>
+        <p>Tissu · Vêtement · Parfum · Linge de Lit · Accessoires</p>
+    </div>
+</div>
+
+<div class="filter-bar">
+    <div class="container">
+        <a href="{% url 'catalogue' %}" class="filter-btn {% if not categorie_active %}active{% endif %}">
+            Tout voir
+        </a>
+        {% for cat in categories %}
+        <a href="{% url 'catalogue' %}?categorie={{ cat.slug }}"
+           class="filter-btn {% if categorie_active.slug == cat.slug %}active{% endif %}">
+            {{ cat.icone }} {{ cat.nom }}
+        </a>
+        {% endfor %}
+    </div>
+</div>
+
+<section class="section" style="background:var(--fond);">
+    <div class="container">
+        {% if categorie_active %}
+        <h2 class="section-title">{{ categorie_active.icone }} {{ categorie_active.nom }}</h2>
+        {% endif %}
+
+        {% if produits %}
+        <div class="products-grid">
+            {% for produit in produits %}
+            <a href="{% url 'produit_detail' produit.slug %}" class="product-card">
+                {% if produit.image %}
+                <img src="{{ produit.image.url }}" alt="{{ produit.nom }}">
+                {% else %}
+                <div class="product-no-img">🛍️</div>
+                {% endif %}
+                <div class="product-info">
+                    <span class="product-cat">{{ produit.categorie.nom }}</span>
+                    <h3>{{ produit.nom }}</h3>
+                    <p class="product-price">{{ produit.prix|floatformat:0 }} FCFA</p>
+                    <span class="product-btn">Voir détails →</span>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="empty-state">
+            <p>🛍️ Aucun produit disponible pour le moment.</p>
+            <a href="{% url 'catalogue' %}" class="btn-primary">Voir tout le catalogue</a>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+{% endblock %}
